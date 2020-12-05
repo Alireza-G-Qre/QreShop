@@ -1,0 +1,36 @@
+{% load static %}
+{% url 'account:account_login' as login_url %}
+{% url 'account:account_register' as register_url %}
+{% url 'account:account_logout' as logout_url %}
+
+<div class="header-middle">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-4" style="text-align: left;">
+                <div class="logo">
+                    <a href="#"><img src="{% static 'images/home/logo.png' %}" alt="Logo"
+                                     style="text-align: center;"/></a>
+                </div>
+            </div>
+
+            <div class="col-sm-8 header-middle-menu">
+                <div class="shop-menu pull-right">
+                    <ul class="nav navbar-nav">
+
+                        <li><a href="#"><i class="fa fa-user"></i> حساب کاربـری </a></li>
+                        <li><a href="#"><i class="fa fa-star"></i> لیست علاقه مندی ها </a></li>
+                        <li><a href="#"><i class="fa fa-shopping-cart"></i> سبد خریـد </a></li>
+
+                        {% if not request.user.is_authenticated %}
+                            <li><a href='{{ login_url }}'><i class="fa fa-lock"></i> ورود </a></li>
+                            <li><a href='{{ register_url }}'><i class="fa fa-lock"></i> ثبت نام </a></li>
+                        {% else %}
+                            <li><a href='{{ logout_url }}'><i class="fa fa-lock"></i> خروج </a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
